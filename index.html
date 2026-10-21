@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payload CMS — The Next-Gen Headless TypeScript CMS</title>
+  <meta name="description" content="Payload is the open-source, full-code TypeScript headless CMS engineered for Next.js, featuring automated GraphQL/REST APIs, granular access control, and native React admin.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Terminal Notification Bar -->
+  <aside class="terminal-banner">
+    <div class="container banner-inner">
+      <div class="banner-left">
+        <span class="version-tag">v3.0.0</span>
+        <span>Payload 3.0 is now live: Native Next.js App Router, Server Components & Zero-Cold-Start DB</span>
+      </div>
+      <a href="#playground" class="banner-link">Explore Sandbox →</a>
+    </div>
+  </aside>
+
+  <!-- Developer Navbar -->
+  <header class="payload-header" id="header">
+    <div class="container header-container">
+      <a href="#" class="brand-wrap">
+        <div class="brand-square">■</div>
+        <span class="brand-name">Payload<strong>CMS</strong></span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#playground" class="nav-link">Interactive API</a>
+        <a href="#features" class="nav-link">Bento Architecture</a>
+        <a href="#benchmarks" class="nav-link">Benchmarks</a>
+        <a href="#cli" class="nav-link">Quickstart</a>
+      </nav>
+
+      <div class="header-right">
+        <div class="github-star-pill" id="starPill">
+          <span class="star-icon">★</span>
+          <span>Star on GitHub</span>
+          <strong id="starCount">28.4k</strong>
+        </div>
+        <a href="#cli" class="btn btn-primary btn-sm">Get Started</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="matrix-grid-bg"></div>
+      <div class="terminal-glow"></div>
+
+      <div class="container hero-layout">
+        <div class="hero-text-block">
+          <div class="code-kicker">
+            <code>npm install payload</code>
+            <span class="dot-active"></span>
+          </div>
+          <h1 class="hero-title">
+            The Best Way to Build <br>
+            <span class="green-gradient">A Modern Backend.</span>
+          </h1>
+          <p class="hero-desc">
+            No black boxes. No awkward visual modelers. Payload is a code-first, 100% TypeScript headless CMS that lives directly inside your repository, generating instant GraphQL, REST, and Local typed APIs.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#cli" class="btn btn-primary btn-lg">Deploy in 60s</a>
+            <a href="#playground" class="btn btn-terminal btn-lg">Live API Playground</a>
+          </div>
+
+          <div class="hero-stack-badges">
+            <span class="stack-badge">TypeScript Native</span>
+            <span class="stack-badge">Postgres / MongoDB</span>
+            <span class="stack-badge">Next.js 15 Ready</span>
+          </div>
+        </div>
+
+        <div class="hero-code-block">
+          <div class="code-window">
+            <div class="window-header">
+              <div class="window-dots">
+                <span class="dot-red"></span>
+                <span class="dot-yellow"></span>
+                <span class="dot-green"></span>
+              </div>
+              <span class="window-title">src/collections/Posts.ts</span>
+            </div>
+            <pre class="code-pre"><code><span class="token-keyword">import</span> { <span class="token-fn">CollectionConfig</span> } <span class="token-keyword">from</span> <span class="token-str">'payload/types'</span>
+
+<span class="token-keyword">export const</span> <span class="token-var">Posts</span>: <span class="token-type">CollectionConfig</span> = {
+  <span class="token-prop">slug</span>: <span class="token-str">'posts'</span>,
+  <span class="token-prop">admin</span>: { <span class="token-prop">useAsTitle</span>: <span class="token-str">'title'</span> },
+  <span class="token-prop">access</span>: {
+    <span class="token-fn">read</span>: () => <span class="token-bool">true</span>,
+    <span class="token-fn">update</span>: ({ <span class="token-var">req</span> }) => <span class="token-var">req</span>.<span class="token-prop">user</span>?.<span class="token-prop">role</span> === <span class="token-str">'admin'</span>
+  },
+  <span class="token-prop">fields</span>: [
+    { <span class="token-prop">name</span>: <span class="token-str">'title'</span>, <span class="token-prop">type</span>: <span class="token-str">'text'</span>, <span class="token-prop">required</span>: <span class="token-bool">true</span> },
+    { <span class="token-prop">name</span>: <span class="token-str">'slug'</span>, <span class="token-prop">type</span>: <span class="token-str">'text'</span>, <span class="token-prop">unique</span>: <span class="token-bool">true</span> },
+    { <span class="token-prop">name</span>: <span class="token-str">'author'</span>, <span class="token-prop">type</span>: <span class="token-str">'relationship'</span>, <span class="token-prop">relationTo</span>: <span class="token-str">'users'</span> }
+  ]
+}</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive API Playground -->
+    <section class="playground-section" id="playground">
+      <div class="container">
+        <div class="section-title-wrap text-center">
+          <span class="sub-header">FULL-STACK SYNCHRONIZATION</span>
+          <h2>One Schema. Infinite API Surfaces.</h2>
+          <p>Toggle below to see how Payload automatically provisions Local TypeScript APIs, REST endpoints, and GraphQL schemas from a single collection definition.</p>
+        </div>
+
+        <div class="playground-workbench">
+          <div class="api-tabs" id="apiTabs">
+            <button class="api-tab active" data-api="local">Local API (Fastest)</button>
+            <button class="api-tab" data-api="rest">REST API (Auto-Generated)</button>
+            <button class="api-tab" data-api="graphql">GraphQL (Typed Schema)</button>
+          </div>
+
+          <div class="api-display-grid">
+            <!-- Left: Request Code -->
+            <div class="code-terminal-box">
+              <div class="terminal-title-bar">
+                <span class="terminal-lang">TypeScript / Client Query</span>
+                <button class="copy-btn" id="copyCodeBtn">📋 Copy</button>
+              </div>
+              <pre class="terminal-pre"><code id="requestCodeSnippet">// Local API in Next.js Server Component
+const posts = await payload.find({
+  collection: 'posts',
+  where: {
+    published: { equals: true }
+  },
+  limit: 10,
+  sort: '-createdAt'
+});</code></pre>
+            </div>
+
+            <!-- Right: Live Response JSON -->
+            <div class="code-terminal-box">
+              <div class="terminal-title-bar">
+                <span class="terminal-lang">Response (200 OK • 1.2ms)</span>
+                <span class="status-indicator">● LIVE EXECUTION</span>
+              </div>
+              <pre class="terminal-pre"><code id="responseCodeSnippet">{
+  "docs": [
+    {
+      "id": "64f9b8c2e10a",
+      "title": "Scaling Next.js with Payload CMS",
+      "slug": "scaling-nextjs",
+      "author": { "name": "Toxa", "role": "admin" },
+      "createdAt": "2026-10-21T18:00:00.000Z"
+    }
+  ],
+  "totalDocs": 1,
+  "limit": 10,
+  "totalPages": 1
+}</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bento Architecture Grid -->
+    <section class="features-section" id="features">
+      <div class="container">
+        <div class="section-title-wrap text-center">
+          <span class="sub-header">CORE SUPERPOWERS</span>
+          <h2>Designed for Developers Who Hate Limitations</h2>
+        </div>
+
+        <div class="bento-grid">
+          <div class="bento-item bento-lead">
+            <span class="bento-icon">⚡</span>
+            <h3>100% Extensible React Admin Panel</h3>
+            <p>Customize every single field, sidebar, and dashboard view with your own custom React Server Components and interactive client buttons. No iframe hacks or proprietary component kits.</p>
+          </div>
+
+          <div class="bento-item">
+            <span class="bento-icon">🗄️</span>
+            <h3>PostgreSQL, SQLite & MongoDB</h3>
+            <p>Pick your favorite database. Swap adapters seamlessly with Drizzle ORM migrations built straight in.</p>
+          </div>
+
+          <div class="bento-item">
+            <span class="bento-icon">🛡️</span>
+            <h3>Field-Level Access Control</h3>
+            <p>Define declarative RBAC security functions per collection or down to individual document fields.</p>
+          </div>
+
+          <div class="bento-item">
+            <span class="bento-icon">🌍</span>
+            <h3>Native Localization & Drafts</h3>
+            <p>Multi-language translations and versioning workflows without bloated third-party plugins.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benchmark Comparison -->
+    <section class="benchmark-section" id="benchmarks">
+      <div class="container">
+        <div class="benchmark-box">
+          <div class="benchmark-head">
+            <span class="sub-header">PROVEN VELOCITY</span>
+            <h2>Cold-Start Latency & Memory Footprint</h2>
+            <p>Because Payload compiles into your existing Next.js application, there is zero HTTP overhead for server-side queries.</p>
+          </div>
+
+          <div class="benchmark-bars">
+            <div class="bench-row">
+              <span class="bench-label">Payload Local API</span>
+              <div class="bench-track">
+                <div class="bench-fill fill-green" style="width: 95%;">1.2 ms (Zero HTTP Overhead)</div>
+              </div>
+            </div>
+
+            <div class="bench-row">
+              <span class="bench-label">Strapi (REST Node)</span>
+              <div class="bench-track">
+                <div class="bench-fill fill-muted" style="width: 45%;">48 ms</div>
+              </div>
+            </div>
+
+            <div class="bench-row">
+              <span class="bench-label">Contentful (Cloud SaaS)</span>
+              <div class="bench-track">
+                <div class="bench-fill fill-muted" style="width: 30%;">115 ms</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quickstart CLI Section -->
+    <section class="cli-section" id="cli">
+      <div class="container">
+        <div class="cli-card">
+          <span class="sub-header">DEPLOY YOUR FIRST PROJECT</span>
+          <h2>Start Building with Payload in Seconds</h2>
+          <p>Run the interactive template CLI and spin up a complete full-stack website or mobile backend in under 60 seconds.</p>
+
+          <div class="cli-command-box">
+            <span class="cmd-prompt">$</span>
+            <code id="cliCommandText">npx create-payload-app@latest</code>
+            <button class="btn-copy-cli" id="copyCliBtn">Copy Command</button>
+          </div>
+          <span class="copied-notice" id="cliCopiedNotice">✓ Copied to clipboard!</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="payload-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="brand-wrap">
+          <div class="brand-square">■</div>
+          <span class="brand-name">Payload<strong>CMS</strong></span>
+        </div>
+        <p>The code-first, developer-centric headless CMS built for ambitious TypeScript applications.</p>
+        <p class="copyright">&copy; 2026 Payload CMS Ltd. Created with engineering elegance for <strong>Toxa</strong>.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>DEVELOPERS</h4>
+        <a href="#playground">Interactive Playground</a>
+        <a href="#features">Architecture</a>
+        <a href="#benchmarks">Benchmarks</a>
+        <a href="#cli">CLI Quickstart</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>DATABASE ADAPTERS</h4>
+        <span>@payloadcms/db-postgres</span>
+        <span>@payloadcms/db-mongodb</span>
+        <span>@payloadcms/db-sqlite</span>
+      </div>
+
+      <div class="footer-col">
+        <h4>COMMUNITY</h4>
+        <span>GitHub: 28,400+ Stars</span>
+        <span>Discord: 18,000+ Members</span>
+        <span>info@payloadcms.com</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
